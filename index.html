@@ -1,0 +1,390 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css">
+<link rel="stylesheet" href="css/jquery-ui.min.css">
+<script src="js/jquery.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+<script src="js/jquery.mobile-1.4.3.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+
+
+<script type="text/javascript">
+var base_url = "http://www.blooddonornow.com/";
+</script>
+<style type="text/css">
+	body{
+		font-family:zawgyi1;
+	}
+	#toolbar{
+	background:#E51C23;
+	color:white;
+	}
+	#setting{
+	background:url("img/plus.png");
+	background-repeat:no-repeat;
+	width:25px;
+	height:20px; 
+	border:0px;
+	box-shadow:none;
+	top:2px;
+	}
+	h1 { font-family: 'Roboto', sans-serif; font-weight: 400; }
+	#content{
+	background:#fcfcfc;
+	border-radius:5px;
+	border:1px solid #DDDDDD;
+	padding:0px 10px 0px 10px;
+	}
+	.ui-content{
+	margin:10px;
+	color:#333333;
+	font-family: 'Roboto', sans-serif; font-weight: 400;
+	}
+	legend{
+	font-size:15px;
+	}
+	.ui-input-text.ui-custom {
+	border:1px solid #DDDDDD;
+	box-shadow: none;
+	border-radius:0px;
+}
+.statusok{
+	opacity:0.5;
+}
+</style>
+</head>
+<body>
+
+
+<div data-role="page" id="home">
+  <div data-role="header" id="toolbar">
+	<a href="#home" data-role="button" class='ui-btn-left' id="setting" ></a>
+	<h1 >Blood Donor Now</h1>
+	<a href="#edit" data-role="button" class="ui-btn-right editbutton" style="display:none;">Edit</a>
+  </div>
+		<div data-role="content" data-rel='dialog'>
+		</div>
+  <div data-role="main" class="ui-content">
+  		<div id="needblood1">
+
+		</div>
+
+
+  </div>
+
+  <div data-role="footer" id="toolbar" data-position="fixed" data-fullscreen="true" style="text-align:center;">
+			<a href="#home" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Home</a>
+			<a href="#form" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Donation Form</a>
+			<a href="#requestbloodpage"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Request Blood</a>
+			<a href="#blog"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Blog</a>
+  </div>
+</div> 
+
+<!--- Form Page Start ----------------------------------------------------->
+<div data-role="page" id="form" >
+  <div data-role="header" id="toolbar">
+  <a href="#home" data-role="button" class='ui-btn-left' id="setting" ></a>
+	<h1 >Blood Donor Now</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+		<form id="addbloodDonorForm" action="" method="POST" style="padding:0px 5px;">
+		<p>
+		<input type="hidden" name="id" id="id" value="" />
+		<fieldset data-role="controlgroup">
+			<legend>အမည္</legend>
+			<input type="text" name="name" id="name" required="required" data-wrapper-class="ui-custom"/>
+		</fieldset>
+		</p>
+		<p>
+		<legend>ေမြးေန႔</legend>
+		<input type="text" id="bod" name="bod" id="bod" required="required" data-wrapper-class="ui-custom"/>
+		</p>
+		<p>
+			<fieldset data-role="controlgroup">
+				<legend>ေနာက္ဆံုး လွဴဒါန္းခဲ့သည့္ ေန႔ </legend>
+				<input type="text" name="last_donate" id="last_donate"  data-wrapper-class="ui-custom"/>
+			</fieldset>
+			</p>
+		<p>
+			<legend>မွတ္ပံုတင္ နံပါတ္</legend>
+			<input type="text" name="nrc" id="nrc" class="" required="required" data-wrapper-class="ui-custom"/>
+		</p>
+		<p>
+			<legend>ဖုန္းနံပါတ္</legend>
+			<input type="text" name="phoneNumber" id="phoneNumber" required="required" data-wrapper-class="ui-custom"/>
+		</p>
+		<p>
+			<legend>ေသြးအုပ္စု</legend>
+			<select name="blood_type" id="bloodgroup" required="required" />
+			</select>
+		</p>
+
+			<p>
+			<legend for="">သင္လွဴႏုိင္မည့္ အခ်ိန္မ်ား အနည္းဆံုး တစ္ခု ေရြးေပးပါ။</legend>
+			<fieldset data-role="controlgroup" id="time" >
+				<input type="checkbox" name="donation_time[]" id="checkbox-mini-0"  value="1"/>
+				<label for="checkbox-mini-0" style="font-weight: normal;">ရံုးပိတ္ရက္ တြင္ လႈႏုိင္ပါသည္</label>	
+				<input type="checkbox" name="donation_time[]" id="checkbox-mini-1"  value="2"/>
+				<label for="checkbox-mini-1" style="font-weight: normal;">ရံုးဖြင့္ရက္၏ ရံုးခ်ိန္ျပင္ပတြင္ လွဴႏုိင္ပါသည္</label>	
+				<input type="checkbox" name="donation_time[]" id="checkbox-mini-2"  value="3"/>
+				<label for="checkbox-mini-2" style="font-weight: normal;">ရုံးဖြင့္ရက္ လွဴႏုိင္ပါသည္</label>
+				<input type="checkbox" name="donation_time[]" id="checkbox-mini-3"  value="4"/>
+				<label for="checkbox-mini-3" style="font-weight: normal;">အခ်ိန္မေတာ္ ညဘက္ ျဖစ္ေနလွ်င္လည္း လွဴႏိုင္ပါသည္</label>	
+				<input type="checkbox" name="donation_time[]" id="checkbox-mini-4"  value="5"/>
+				<label for="checkbox-mini-4" style="font-weight: normal;">လွ်ဳႏိုင္မည့္ အခ်ိန္အား မေျပာတတ္ ေသးပါ။ လိုလွ်င္ မည္သည့္အခ်ိန္ျဖစ္ေစ ဖုန္းဆက္ၾကည့္ေစလိုပါသည္။</label>
+				<input type="checkbox" name="donation_time[]" id="checkbox-mini-5"  value="6"/>
+				<label for="checkbox-mini-5" style="font-weight: normal;">လူနာအေျခအေနေပၚမူတည္၍ ေသြးလွဴရန္အတြက္ တစ္ေနကုန္ ေစာင့္ဆုိင္းေပးရန္လိုအပ္သည့္အေျခအေနမ်ား တြင္ တစ္ေနကုန္ေစာင့္ဆုိင္း၍ လွဴေပးႏုိင္ပါသည္။</label>
+			</fieldset>
+			</p>
+			<p>
+			<fieldset data-role="controlgroup">
+				<legend>က်ား/မ</legend>
+				<input type="radio" class='sex' name="sex"  id="radio-choice-v-2a" value="1" checked="checked">
+				<label for="radio-choice-v-2a" style="font-weight: normal;">က်ား</label>
+				<input type="radio" class='sex' name="sex"   id="radio-choice-v-2b" value="0">
+				<label for="radio-choice-v-2b" style="font-weight: normal;">မ</label>
+			</fieldset>
+			</p>
+			<p>
+			<legend>သင္ေနထုိင္ရာ ၿမိဳ႕နယ္</legend>
+			<select name="township" id="township" required="required">
+			</select>
+			</p>
+			<p>
+				<legend>Facebook Link</legend>
+				<input type="url" name="facebook_link" placeholder="http://www.facebook.com/yourname" data-wrapper-class="ui-custom"/>
+			</p>
+			<p>
+			<fieldset data-role="controlgroup">
+			<legend>လူနာရွင္မွ သင့္အား ကားချပန္ေပးရန္ လိုအပ္ပါသလား ?</legend>
+			<input type="radio" class="wantTravelCharge" name="wantTravelCharge" id="wanttravelcharge1" value="0" checked="checked">
+			<label for="wanttravelcharge1" style="font-weight: normal;">မလုိအပ္ပါ။</label>
+			<input type="radio" class="wantTravelCharge" name="wantTravelCharge" id="wanttravelcharge2" value="1">
+			<label for="wanttravelcharge2" style="font-weight: normal;">လိုအပ္ပါသည္။</label>
+			</fieldset>
+			</p>
+			<label for=""></label>
+			<input type="submit"  value="စာရင္းသြင္းရန္ ကလစ္ပါ။" />
+		</form>
+  </div>
+
+<div data-role="footer" id="toolbar" data-position="fixed" data-fullscreen="true" style="text-align:center;">
+	<a href="#home" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Home</a>
+			<a href="#form" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Donation Form</a>
+			<a href="#requestbloodpage"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Request Blood</a>
+			<a href="#blog"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Blog</a>
+  </div>
+</div> 
+<!---------------------------- Form Page End --------------------------------------------------->
+<!---------------- Request Blood Page -------------------------------------------------------->
+
+<div data-role="page" id="requestbloodpage">
+	<div data-role="header" id="toolbar">
+	<a href="#home" data-role="button" class='ui-btn-left' id="setting" ></a>
+	<h1 >Blood Donor Now</h1>
+	</div>
+	<div data-role="content">
+<legend>ေသြးအကူအညီေတာင္းခံရန္ ဖုန္းနံပါတ္မ်ား</legend>
+<ul data-role="listview" data-inset="true">
+    <li>
+		<a href="tel:0931571984">
+        <img src="img/female.jpg">
+		<h2>Broken Bells</h2>
+		<p>Broken Bells</p>
+		0931571984</a>
+    </li>
+	
+	    <li>
+		<a href="tel:0973212256">
+        <img src="img/male.jpg">
+		<h2>Myat Kg Htet</h2>
+		<p>Testing Only</p>
+		0973212256</a>
+    </li>
+	<li>
+		<a href="tel:0931571984">
+        <img src="img/male.jpg">
+		<h2>Waiyan</h2>
+		<p>Testing Only</p>
+		0931571984</a>
+    </li>
+
+</ul>
+	</div>
+<div data-role="footer" id="toolbar" data-position="fixed" data-fullscreen="true" style="text-align:center;">
+	<a href="#home" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Home</a>
+			<a href="#form" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Donation Form</a>
+			<a href="#requestbloodpage"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Request Blood</a>
+			<a href="#blog"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Blog</a>
+  </div>
+</div>
+<!------------- End Request Blood Page -------------------------------------------------------->
+<!--------Blood Blog Page -------------------------------------------------------------------------->
+<div data-role="page" id="blog">
+	<div data-role="header" id="toolbar">
+		<a href="#home" data-role="button" class='ui-btn-left' id="setting" ></a>
+		<h1 >Blood Donor Now</h1>
+	</div>
+	<div data-role="content">
+<legend>က်မ္းမာေရးဆုိင္ရာ သိေကာင္းစရာမ်ား</legend>
+<br/>
+<br/>
+	<div id="content">
+		<h3>AIDS ဆိုတာ ဘာလဲ</h3>
+		<p>ေအအုိင္ဒီအက္စ္ Acquired Immune Deficiency Syndrome သည္ အိတ္ခ်္အုိင္ဗြီပုိး Human
+
+Immunodeficiency Virus ေၾကာင့္ ျဖစ္ပြားေသာေရာဂါျဖစ္­သည္။
+
+ထုိဗုိင္းရပ္စ္ပုိးသည­္ ေသးငယ္လွေသာ ဇီဝပစၥည္းတခုျဖစ္ၿပီး­ သတၱဝါမ်ားအတြင္းရွိ ကလာပ္စည္းမ်ားသုိ‹
+
+ဝင္ကပ္ေပါင္းၿပီး ထုိကလာပ္စည္းအတုိင္း ပုံစံကူးယူႏုိင္စြမ္း­ရွိသည္။ ထုိကလာပ္စည္းမ်ားက အိတ္ခ်္အုိင္ဗြီပုိး
+
+ပုံစံတူမ်ား ဖဲြ‹စည္းအၿပီး ေသဆုံးသြားေသာ္လည္း အျခားကလာပ္စည္းမ်ား၌ သြားေရာက္ဝင္ကပ္ပူးရန­္
+
+ထုိပုံစံတူပုိးကလာပ္စ­ည္းမ်ားကုိ ထုတ္လႊတ္ေပးေလသည္။
+
+အိတ္ခ်္အုိင္ဗြီ/­ေအအုိင္ဒီအက္စ္ကုိ တုိက္ယူသည့္ ေရာဂါပုိးမ်ား ခုခံကာကြယ္ေပးေသာ ပဋိပစၥည္းမ်ား
+
+ခႏၾၶြာကုိယ္မွ ထုတ္လႊတ္ေပးၿပီး ယင္းကုိ ဆယ္ဒိုကြန္ဗာရွင္းဟု­ေခၚသည္။
+
+ကလာပ္စည္းအေတာ္မ်ားမ်­ား ေသဆုံးသြားသည့္အခါ ခုခံစြမ္းအား ေလ်ာ့နည္းသြားၿပီး ယခင္ကကဲ့သုိ‹
+
+ဝင္လာေသာေရာဂါမ်ားကုိ­ ခုခံကာကြယ္ႏုိင္စြမ္း­ မရွိေတာ့ေပ။ ထုိသုိ‹ေသာအေျခအေနတြင­္ ယခင္က
+
+ေတာ္႐ုံတန္႐ုံေလာက္သာ­ျဖစ္ေသာ၊ ျပႆနာအႀကီးအက်ယ္ မေပးႏုိင္ေသာ ေရာဂါမ်ားသည္ပင္လွ်င္
+
+အလြန္ အႏၱရာယ္ႀကီးသည့္ ေရာဂါမ်ား ျဖစ္လာတတ္သည္။</p>
+	</div>
+	<div id="content">
+		<h3>AIDS ဘယ္လုိဘယ္ပုံ ကူးစက္ႏုိင္ပါသလဲ၊ ဘယ္လုိ ကာကြယ္ယူလုိ႔ ရပါသလဲ၊</h3>
+
+
+
+<p>ကူးစက္ပုံကူးစက္နည္း - <br/>
+<b>ကာမဆက္ဆံျခင္း</b></br>
+
+ကူးစက္ၿပီးသားသူ တစံုတဦးႏွင့္ ကာမဆက္ဆံျခင္း ျပဳပါက ကူးစက္ႏုိင္သည္။ အိတ္ခ်္ အုိင္ဗြီကူးစက္မႈႏႈန္­း၏ ၇၅ ရာခုိင္ႏႈန္းသည္ ကာမဆက္ဆံျခင္းမွ ကူးစက္ၾကျခင္းျဖစ္သည္­။
+
+ဤ ၇၅ ရာခုိင္ႏႈန္းမွ သုံးပုံတပုံသည္ ဖုိမ ၾကားကာမဆက္ဆံျခင္းမွ ကူးစက္ပ်ံ႕ပြားျခင္း ျဖစ္သည္။ ျပတ္သြား၊ ျခစ္မိသြားသည့္ ေနရာေသးေသးကေလးမ်ားမွ­ အိတ္ခ်္အိုင္ဗြီပုိး ခႏၶာကုိယ္တြင္း၀င္ေရာ­က္ လာႏုိင္သည္။ အက္စ္ တီအုိင္ ေခၚ ကာမဆက္ဆံျခင္းမွ ကူးစက္မႈမ်ားမွာအနာမ်­ား၊ ဒဏ္ရာဒဏ္ခ်က္ မ်ားမွျဖစ္ပြားေလ့ရွိ­ၿပီး အိတ္ခ်္ အုိင္ဗြီပုိး ကူးစက္လာရန္အထူးအေျခ အေနတခုကုိ ဖန္တီးေပးေလသည္။
+<br/>
+<b>ကာကြယ္တားဆီးႏုိင္ေသာ­နည္းလမ္းမ်ား</b></br>
+
+<b>ဇီ၀ဆုိင္ရာကာကြယ္နည္း</b>
+
+<br/>အက္စ္တီအုိင္မရေအာင္ ထိန္းသိမ္းျခင္း၊ ကာကြယ္ေဆးထုိးျခင္းႏွ­င့္ မုိက္ကရိုဘုိက္ဒ္စ္၊ အျပဳအမူဆုိင္ ရာကာကြယ္နည္း - သမားရိုးက်ပညာေရး၊ သတင္းစာနယ္ဇင္း၊ လူမႈေရးေစ်းကြက္လုပ္ယ­ူျခင္း၊
+<br/>
+<b>ကူးစက္ပုံကူးစက္နည္း - ေဆးထုိးျခင္း</b>
+
+<br/>ေဆးထုိးအပ္မ်ား တဦးၿပီးတဦး ထပ္ကာထပ္ကာ ဖလွယ္သုံးစဲြျခင္း သုိ႔မဟုတ္ ကူးစက္ခံရၿပီးသူႏွင့္­မူးယစ္ေဆး၀ါး ထုိးသုံးစဲြသည့္ ကိရိယာတန္ဆာပလာမ်ားဖလ­ွယ္သုံးျခင္း။
+
+<br/><b>ကာကြယ္တားဆီးႏုိင္ေသာ­နည္းလမ္းမ်ား</b>
+<br/>
+သန္႔ရွင္းေသာ ေဆးထုိးကရိယာမ်ား ေထာက္ကူေပးျခင္း၊ လူထုအသုိင္းအ၀ုိင္းအတ­ြင္း လက္လွမ္းမီသမွ် ကြင္း ဆင္းလုပ္ကုိင္ျခင္းႏွ­င့္ အေပါင္းအေဖာ္ အခ်င္းခ်င္းအၾကား ပညာေပးေဆာင္ရြက္ျခင္း­၊ က်န္းမာေရး ဌာနမ်ား၊ ေဆးစစ္ျခင္းႏွင့္ ကုသေပးမႈမ်ားသုိ႔လူတု­ိင္းလက္လွမ္းမီရရွိေအ­ာင္ လုပ္ေပးျခင္း။
+<br/>
+<b>ကူးစက္ပုံကူးစက္နည္း - ေသြးသြင္းျခင္း</b>
+
+<br/>အိတ္ခ်္အုိင္ဗြီပုိးပ­ါေသာေသြးအား သြင္းယူမိျခင္း၊ ကာကြယ္တားဆီးႏုိင္ေသာ­နည္းလမ္းမ်ား ေသြးလႉသူမ်ားအား ဇကာတင္စစ္ေဆးၿပီးမွ ေသြးယူျခင္း၊ ပ့ံပုိးလာေသာ ေသြးမ်ားအား ဇကာတင္စစ္ ေဆးယူျခင္း။
+
+အိတ္ခ်္အုိင္ဗီြရွိၿပ­ီးသူ မိခင္၏သားအိမ္အတြင္း သေႏၶတည္ လာသည့္ကေလးငယ္အား မီးဖြားသည့္အခ်ိန္ ႏွင့္ မိခင္ႏုိ႔ရည္တုိက္ေကၽ­ြးခ်ိန္ တုိ႔တြင္ ကူးစက္ႏုိင္သည္။
+
+<br/><b>ကာကြယ္တားဆီးႏုိင္ေသာ­နည္းလမ္းမ်ား</b>
+<br/>
+မီးဖြားျခင္းမျပဳခင္ မိခင္အား အင္န္တီရီထရိုဗုိင္ရယ­္စ္ တုိက္ေက႒းျခင္း၊ မိခင္ႏုိ႔ရည္ တုိက္ေကၽြးျခင္း မျပဳပဲအျခား က်န္းမာေသာနည္းမ်ားသု­ံး၍ ေကၽြးေမြးျခင္း။</p>
+	</div>
+	<div id='content'>
+	<h3>သင္ေသြးလွဴဖူးပါသလား</h3>
+	<p>ေသြးလွဴရွင္မ်ားအေနနဲ႕ ေသြးလိုေနတဲ့ လူနာအတြက္ ေသြးလွဴလိုက္ရလို႕ ေက်နပ္ပီတိေတြ
+ခံစားရတာအျပင္ က်န္းမာေရးနဲ႕ ပတ္သက္တဲ့ အက်ိဳးေက်းဇူးမ်ားလည္း ရရိွေစပါေသးတယ္။</p>
+
+<p>လူရဲ႕ခႏၶာကိုယ္က ထုတ္လုပ္ေပးေနတဲ့ ေသြးကို ပံုမွန္လွဴဒါန္းေပးျခင္းဟာ ေသြးထဲက
+ကိုလက္စထေရာ ပမာဏကို ထိန္းထားႏိုင္ေစပါတယ္။ အထူးသျဖင့္ ပံုမွန္ေသြးလွဴဒါန္းတဲ့
+အမ်ိဳးသားမ်ားအတြက္ က်န္းမာေရး အက်ိဳးေက်းဇူး မ်ားေစပါတယ္။
+ထုတ္လွဴလုိက္တဲ့ေသြးနဲ႕အတူ ပါသြားတဲ့ သံဓါတ္ေတြေၾကာင့္ ေသြးလွဴရွင္ရဲ႕
+ခႏၶာကိုယ္ထဲက သံဓါတ္ေတြ ေလွ်ာ့နည္းေစပါတယ္။ အမ်ိဳးသမီးေတြအေနနဲ႕
+ရာသီဓမၼတာေၾကာင့္ လစဥ္ ခႏၶာကိုယ္ထဲကေန ေသြးေတြ ဆံုးရွံဳးထြက္ရိွလို႕ သံဓါတ္ပမာဏ
+ေလွ်ာ့နည္းၾကေပမယ့္ အမ်ိဳးသားမ်ားအေနနဲ႕ ေသြးလွဴဒါန္းမွဳကေနပဲ ကိုယ္တြင္းက
+သံဓါတ္ပမာဏကို ေလွ်ာ့နည္းေစတာပါ။</p>
+
+
+
+<p>ေသြးလွဴရွင္ေတြမွာ ေလျဖတ္တာနဲ႕ ႏွလံုးေရာဂါ ျဖစ္ႏိုင္ေျခ အလားအလာဟာ ေသြးမလွဴတဲ့
+လူထက္ သံုးပံုတစ္ပံု နည္းပါးတယ္ ဆုိတာကို Kansas University Medical Centerက
+ေလ့လာေတြ႕ရိွခဲ့ပါတယ္။ ခႏၶာကိုယ္ထဲမွာ သံဓါတ္ပမာဏ မ်ားလြန္းေနတာဟာ
+မေကာင္းပါဘူး။ သံဓါတ္ေတြဟာ ကိုလက္စထေရာ ျဖစ္ေစတဲ့အရာမွာ တစ္ခုအပါအဝင္ေပါ့။
+ကိုလက္စထေရာ မ်ားလြန္းေနရင္ ႏွလံုးေရာဂါနဲ႕ ေလျဖတ္တာေတြ ျဖစ္ေစႏုိင္ပါတယ္။
+ဒါေၾကာင့္ ပံုမွန္ေသြးလွဴဒါန္းတဲ့ ေသြးလွဴရွင္ေတြမွာ ေသြးလွဴျခင္းျဖင့္
+သံဓါတ္ပမာဏ ေလွ်ာ့ခ်ႏိုင္ၿပီး ကိုလက္စထေရာကိုလည္း ေလွ်ာ့ေစပါတယ္။</p>
+
+<p>ေသြးလွဴၿပီးတဲ့ေနာက္ပိုင္း ကိုယ္အေလးခ်ိန္တိုးၿပီး ဝ လာမယ္ဆုိတဲ့ အယူအဆ
+အမွားေတြလည္း ရိွပါတယ္။ တကယ္တမ္းမွာေတာ့ ထုတ္ယူလိုက္တဲ့ ေသြးတစ္အိတ္ေၾကာင့္
+ေသြးလွဴရွင္မွာ ကယ္လိုရီ ၆၅၀-စာ ေလ်ာ့က်ေစပါတယ္။ ေသြးလွဴလိုက္လုိ႕လည္း
+အားနည္းမယ္ဆိုတာလည္း မဟုတ္ပါဘူး။</p>
+
+<p>ထုတ္လွဴလိုက္တဲ့ ေသြးေတြကို အစားထိုးေပးဖို႕အတြက္ ခႏၶာကိုယ္က ေသြးအသစ္ေတြကို
+အခ်ိန္ပုိင္းအတြင္း ျပန္လည္ ထုတ္လုပ္ေပးပါတယ္။ အဲဒီလို ထုတ္လုပ္ေပးတဲ့အတြက္
+ေသြးဆဲလ္အသစ္ေတြကို ရရိွေစပါတယ္။ ဒါေၾကာင့္ ေသြးလွဴဒါန္းတာဟာ လတ္ဆတ္တဲ့
+ေသြးသစ္ေတြ ရရိွေစၿပီး က်န္းမာ လန္းဆန္းေစပါတယ္။</p>
+
+<p>ေသြးလွဴဒါန္းတဲ့အခါ ေသြးမလွဴခင္မွာ ေသြးလွဴရွင္ကို က်န္းမာေရး စစ္ေဆးပါတယ္။
+ေသြးေပါင္ခ်ိန္၊ သံဓါတ္ ပမာဏ၊ ကုိယ္အေလးခ်ိန္ စတာေတြကို စစ္ေပးပါတယ္။ ဒါေၾကာင့္
+ေသြးလွဴရွင္အေနနဲ႕ ပံုမွန္ က်န္းမာေရး စစ္ေဆးခံရသလို ျဖစ္ေစပါတယ္။
+အဲဒါ့ေတြအျပင္ ေသြးထဲမွာ အိတ္ခ်္အိုင္ဗီြ၊ အသည္းေရာင္ အသားဝါ ဘီပိုး စီပိုး၊
+ကာလသားေရာဂါပိုး၊ ငွက္ဖ်ားပိုး ပါ မပါကိုပါ စစ္ေပးပါေသးတယ္။ ဒါေပမယ့္ အဲဒီလို
+ေရာဂါပိုးေတြ ရိွမရိွ သိခ်င္လို႕ ေသြးလွဴဒါန္းတာမ်ိဳးေတာ့ မျဖစ္သင့္ပါဘူး။</p>
+
+<p>ပံုမွန္ ေသြးလွဴဒါန္းတာဟာ လူသားဆန္တဲ့ ေက်နပ္ပီတိေတြအျပင္ က်န္းမာေရးအတြက္လည္း
+အက်ိဳးေက်းဇူး မ်ားတယ္...ဆိုတာ သိၿပီးတဲ့ေနာက္မွာ က်န္းမာေရးေကာင္းမြန္တဲ့
+အရြယ္ေရာက္ၿပီးသူတုိင္း ေသြးလွဴေပးၾကဖို႕ တုိက္တြန္းလိုက္ပါရေစ...</p>
+	</div>
+	<div id="content">
+	<h3>ေသြးလွဴျခင္း၊ ေသြးသြင္းျခင္းႏွင့္ ပတ္သက္ေသာ သိထားသင့္သည့္ ဗဟုသုတမ်ား</h3>
+	<p>Health Updates Journal</p>
+<p>No. 88<br/>
+- ေဆး႐ံုတက္တဲ့ လူဆယ္ေယာက္မွာ တစ္ေယာက္ဟာ ေသြးသြင္းရပါတယ္။<br/>
+- အိႏၵိယႏိုင္ငံသား ၆၀%ဟာ ေသြးလွဴဖို႔အတြက္ သင့္ေတာ္ပါတယ္။ ဒါေပမယ့္ အဲဒီဦးေရရဲ႕ ၁%သာ ေသြးလွဴေနၾကပါတယ္။<br/>
+- အသက္၁၈ႏွစ္အထက္နဲ႔ အသက္ ၅၈ႏွစ္ေအာက္္ က်န္းမာသူတိုင္းဟာ ကိုယ္အေလးခ်ိန္ 40kg ရွိရင္ ေသြးလွဴလို႔ရပါတယ္။<br/>
+- ေသြးလွဴတဲ့သူ ၉၀%ဟာ အမ်ိဳးသားေတြပဲ ျဖစ္ပါတယ္။<br/>
+- ကိုယ္အေလးခ်ိန္ရဲ႕ ၇%ဟာ ေသြးျဖစ္ပါတယ္။ ကိုယ္အေလးခ်ိန္ 1kg ရွိတိုင္း ေသြး 70ml ရွိတယ္ဆိုတဲ့ သေဘာပါ။<br/>
+- ေသြးဟာ ကိုယ္ထဲမွာ ၁၀ပိုင့္ ေလာက္ရွိၿပီးေသြးတစ္ခါလွဴရင္ ၁ပိုင့္ ေလာက္ပဲ ထုတ္ရတာျဖစ္ပါတယ္။<br/>
+- က်န္းမာသူတိုင္း သံုးလတစ္ႀကိမ္ ေသြးလွဴလို႔ရပါတယ္။<br/>
+- ေသြးအုပ္စု – ေအ၊ဘီ၊ေအဘီနဲ႔ အို ေလးမ်ိဳးကို Dr.Karl Land Steinerက  ၁၉၀၁ခုႏွစ္မွာ စတင္ ေတြ႕ရွိခဲ့ပါတယ္။<br/>
+- တကမၻာလံုးမွာ အမ်ားဆံုး ေသြးအုပ္စုကေတာ့ O+ ပဲျဖစ္ၿပီး အိႏၵိယ ႏိုင္ငံမွာေတာ့ B+ က အမ်ားဆံုးျဖစ္ပါတယ္။<br/>
+- ေအဘီအေပါင္း ေသြးအုပ္စုဟာ ဘယ္ေသြးအုပ္စုကိုမဆို လက္ခံႏိုင္ၿပီး အိုအႏုတ္ေသြးကေတာ့ ဘယ္ေသြးအုပ္စုကိုမဆို လွဴဒါန္းႏိုင္တဲ့ ေသြးအုပ္စုျဖစ္ပါတယ္။<br/>
+- ေသြးတစ္ခုလံုးရယ္၊ ေသြးနီဥရယ္ဟာ သက္တမ္း ပ်မ္းမွ်၃၅ရက္ရွိၿပီး ေသြးဥမႊား (platelets) ေလးေတြ သီးသန္႔သြင္းရမယ္ဆိုရင္ေတာ့ သံုးရက္ကေန ငါးရက္အတြင္း အသံုးျပဳရပါတယ္။<br/>
+သက္ကို
+ref: medindia</p>
+	</div>
+	</div>
+<div data-role="footer" id="toolbar" data-position="fixed" data-fullscreen="true" style="text-align:center;">
+	<a href="#home" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Home</a>
+			<a href="#form" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Donation Form</a>
+			<a href="#requestbloodpage"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Request Blood</a>
+			<a href="#blog"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Blog</a>
+  </div>
+</div>
+<!---------End blood Blog Page------------------------------------------------------------------->
+<!------ Edit Page Start ------------------------------------->
+<div data-role="page" id="success" >
+  <div data-role="header" id="toolbar">
+  <a href="#home" data-role="button" class='ui-btn-left' id="setting" ></a>
+	<h1 >Blood Donor Now</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+		<h3>Your account is successfully added</h3>
+  </div>
+
+<div data-role="footer" id="toolbar" data-position="fixed" data-fullscreen="true" style="text-align:center;">
+	<a href="#home" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Home</a>
+			<a href="#form" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Donation Form</a>
+			<a href="#requestbloodpage"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Request Blood</a>
+			<a href="#blog"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Blog</a>
+  </div>
+</div> 
+<!--------end edit page ------------------------------------>
+<script src="js/script.js"></script>
+</body>
+</html>
