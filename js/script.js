@@ -31,7 +31,14 @@ function onload()
 function onDeviceReady()
 {
 	//check internet
+			var networkState = navigator.connection.type;
+	 if (networkState == Connection.NONE) 
+		{
+		$("#needblood1").html("<span>Internet Required</span>");
+		}else
+		{
 	var internet = 'yes';
+	}
 	
 	// open database
 	db = window.openDatabase("wsfewdfsefwe", "1.0", "Blood Donation Application", 1000000);	
