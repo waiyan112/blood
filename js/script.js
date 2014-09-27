@@ -34,11 +34,28 @@ function onDeviceReady()
 			var networkState = navigator.connection.type;
 	 if (networkState == Connection.NONE) 
 		{
+		alert('no internet');
 		$("#needblood1").html("<span>Internet Required</span>");
 		}else
 		{
 	var internet = 'yes';
 	}
+if(internet == 'yes')
+{
+needblood();
+}else
+{
+setInterval(function() {
+			var networkState = navigator.connection.type;
+	 if (networkState == Connection.NONE) 
+		{
+		alert('intenet no');
+		}else
+		{
+		needblood();
+		}
+}, 5000);
+}
 	
 	// open database
 	db = window.openDatabase("wsfewdfsefwe", "1.0", "Blood Donation Application", 1000000);	
@@ -55,36 +72,8 @@ function onDeviceReady()
 	function successCB(tx)
 	{
 	}
-	if(internet == 'yes')
-{
-needblood();
-setInterval(function() {
-needblood();
-}, 5000);
-setInterval(function() {
-askforme();
 
-}, 5000);
-function askforme()
-{
 
-		db.transaction(function(tx){
-			tx.executeSql('SELECT * FROM donator',[],function(tx,results){
-			var NB_type = results.rows.item(0).blood_type;
-			var NB_time_type= results.rows.item(0).avalible_time;
-				$.ajax({
-						url : base_url+'index.php/blood/askforme',
-						type : 'POST',
-						data: {NB_type:NB_type,NB_time_type:NB_time_type},
-						success : function(data)
-						{
-							$("body").pagecontainer("change", "#popup_div");
-							console.log(data);
-						}
-						});
-			});
-		});
-}
 function needblood()
 {
 	$.ajax({
@@ -138,7 +127,7 @@ function needblood()
 		}
 	});
 }
-}
+
 	db.transaction(queryDB);
 	function queryDB(tx) 
 	{
