@@ -1,6 +1,10 @@
 $(function() {
+<<<<<<< HEAD
 alert("on event");
 	document.addEventListener("deviceready", onDeviceReady, true);
+=======
+	document.addEventListener("deviceready", onDeviceReady, false);
+>>>>>>> ace66acd97ff82f3f67d23695a66d1fd698935dd
 });
 
 function onDeviceReady()
@@ -10,7 +14,7 @@ alert("on ready");
 			var networkState = navigator.connection.type;
 	 if (networkState == Connection.NONE) 
 		{
-		alert('no internet');
+	
 		$("#needblood1").html("<span>Internet Required</span>");
 		}else
 		{
@@ -25,7 +29,7 @@ setInterval(function() {
 			var networkState = navigator.connection.type;
 	 if (networkState == Connection.NONE) 
 		{
-		alert('intenet no');
+		
 		}else
 		{
 		needblood();
@@ -301,7 +305,7 @@ $("#addbloodDonorForm").submit(function(){
 						tx.executeSql('INSERT INTO donator (id, name,nrc,sex,bod,blood_type,township,facebook_link,phoneNumber,last_donate,wantTravelCharge,avalible_time) VALUES ( ?,?,?,?,?,?,?,?,?,?,?,?)',[id,name,nrc,sex,bod,blood_type,township,facebook_link,phoneNumber,last_donate,wantTravelCharge,avalible_time]);
 						}else
 						{
-						alert(" ia ma update function"+id);
+						
 							tx.executeSql("UPDATE donator SET name=?,nrc=?,sex=?,bod=?,blood_type=?,township=?,facebook_link=?,phoneNumber=?,last_donate=?,wantTravelCharge=?,avalible_time=? WHERE id=?",[name,nrc,sex,bod,blood_type,township,facebook_link,phoneNumber,last_donate,wantTravelCharge,avalible_time,id]);
 						}
 					});
