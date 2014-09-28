@@ -1,13 +1,11 @@
-
-
-function onload()
-{
-
+$(function() {
+alert("on event");
 	document.addEventListener("deviceready", onDeviceReady, false);
-}
+});
 
 function onDeviceReady()
 {
+alert("on ready");
 	//check internet
 			var networkState = navigator.connection.type;
 	 if (networkState == Connection.NONE) 
