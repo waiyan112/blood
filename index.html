@@ -4,9 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="css/jquery.mobile-1.4.3.min.css">
 <link rel="stylesheet" href="css/jquery-ui.min.css">
-
 <script src="cordova.js" type="text/javascript"></script>
-
 <script src="js/jquery.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
 <script src="js/jquery.mobile-1.4.3.min.js"></script>
@@ -62,14 +60,16 @@ var base_url = "http://www.blooddonornow.com/";
 
 
 <div data-role="page" id="home">
-  <div data-role="header" id="toolbar">
-	<a href="#home" data-role="button" class='ui-btn-left' id="setting" ></a>
+  <div data-role="header" id="toolbar" style="min-height:48px;margin-top:-1px;">
+	<a href="#home" data-role="button"  class='ui-btn-left' id="setting" ></a>
 	<h1 >Blood Donor Now</h1>
-	<a href="#edit" data-role="button" class="ui-btn-right editbutton" style="display:none;">Edit</a>
+	<a href="#howitwork" data-role="button" class="ui-btn-right " >How It Works</a>
   </div>
 		<div data-role="content" data-rel='dialog'>
 		</div>
   <div data-role="main" class="ui-content">
+		<div id="progress" align="center" style="display:none;"><img src="img/ajax-loader.gif"><p>Connecting To Server</p></div>
+		<div ><p id="imformation"></p></div>
   		<div id="needblood1">
 
 		</div>
@@ -78,7 +78,6 @@ var base_url = "http://www.blooddonornow.com/";
   </div>
 
   <div data-role="footer" id="toolbar" data-position="fixed" data-fullscreen="true" style="text-align:center;">
-			<a href="#home" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Home</a>
 			<a href="#form" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Donation Form</a>
 			<a href="#requestbloodpage"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Request Blood</a>
 			<a href="#blog"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Blog</a>
@@ -87,9 +86,10 @@ var base_url = "http://www.blooddonornow.com/";
 
 <!--- Form Page Start ----------------------------------------------------->
 <div data-role="page" id="form" >
-  <div data-role="header" id="toolbar">
+    <div data-role="header" id="toolbar" style="min-height:48px;margin-top:-1px;">
   <a href="#home" data-role="button" class='ui-btn-left' id="setting" ></a>
 	<h1 >Blood Donor Now</h1>
+	<a href="#howitwork" data-role="button" class="ui-btn-right " >How It Works</a>
   </div>
 
   <div data-role="main" class="ui-content">
@@ -175,7 +175,6 @@ var base_url = "http://www.blooddonornow.com/";
   </div>
 
 <div data-role="footer" id="toolbar" data-position="fixed" data-fullscreen="true" style="text-align:center;">
-	<a href="#home" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Home</a>
 			<a href="#form" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Donation Form</a>
 			<a href="#requestbloodpage"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Request Blood</a>
 			<a href="#blog"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Blog</a>
@@ -185,9 +184,10 @@ var base_url = "http://www.blooddonornow.com/";
 <!---------------- Request Blood Page -------------------------------------------------------->
 
 <div data-role="page" id="requestbloodpage">
-	<div data-role="header" id="toolbar">
+	  <div data-role="header" id="toolbar" style="min-height:48px;margin-top:-1px;">
 	<a href="#home" data-role="button" class='ui-btn-left' id="setting" ></a>
 	<h1 >Blood Donor Now</h1>
+	<a href="#howitwork" data-role="button" class="ui-btn-right " >How It Works</a>
 	</div>
 	<div data-role="content">
 <legend>ေသြးအကူအညီေတာင္းခံရန္ ဖုန္းနံပါတ္မ်ား</legend>
@@ -218,7 +218,6 @@ var base_url = "http://www.blooddonornow.com/";
 </ul>
 	</div>
 <div data-role="footer" id="toolbar" data-position="fixed" data-fullscreen="true" style="text-align:center;">
-	<a href="#home" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Home</a>
 			<a href="#form" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Donation Form</a>
 			<a href="#requestbloodpage"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Request Blood</a>
 			<a href="#blog"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Blog</a>
@@ -227,9 +226,10 @@ var base_url = "http://www.blooddonornow.com/";
 <!------------- End Request Blood Page -------------------------------------------------------->
 <!--------Blood Blog Page -------------------------------------------------------------------------->
 <div data-role="page" id="blog">
-	<div data-role="header" id="toolbar">
+	  <div data-role="header" id="toolbar" style="min-height:48px;margin-top:-1px;">
 		<a href="#home" data-role="button" class='ui-btn-left' id="setting" ></a>
 		<h1 >Blood Donor Now</h1>
+		<a href="#howitwork" data-role="button" class="ui-btn-right " >How It Works</a>
 	</div>
 	<div data-role="content">
 <legend>က်မ္းမာေရးဆုိင္ရာ သိေကာင္းစရာမ်ား</legend>
@@ -362,18 +362,54 @@ ref: medindia</p>
 	</div>
 	</div>
 <div data-role="footer" id="toolbar" data-position="fixed" data-fullscreen="true" style="text-align:center;">
-	<a href="#home" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Home</a>
 			<a href="#form" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Donation Form</a>
 			<a href="#requestbloodpage"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Request Blood</a>
 			<a href="#blog"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Blog</a>
   </div>
 </div>
 <!---------End blood Blog Page------------------------------------------------------------------->
+<!---- How It Work --------------->
+<!------- End How It Work --------------------->
+<div data-role="page" id="howitwork">
+	  <div data-role="header" id="toolbar" style="min-height:48px;margin-top:-1px;">
+		<a href="#home" data-role="button" class='ui-btn-left' id="setting" ></a>
+		<h1 >Blood Donor Now</h1>
+		<a href="#howitwork" data-role="button" class="ui-btn-right " >How It Works</a>
+	</div>
+	<div data-role="content">
+<legend>BDN Application အေၾကာင္း</legend>
+<br/>
+<br/>
+	<div id="content">
+		<h3>Application ၏ ရည္ရြယ္ခ်က္</h3>
+		<p>ယခု application ကို ေသြးလွဴ ဒါန္းလိုသူမ်ားႏွင့္ ေသြးလိုအပ္ေနသူမ်ား အတြက္ အခ်ိန္မွီ သိရွိ လွဴ ဒါန္းႏိုင္ရန္ ေရးဆြဲထားျခင္းျဖစ္ပါ­သည္၊<p>
+		<hr/>
+		<h3>ဘယ္လို အသံုးျပဳရမလဲ ? </h3>
+<p>ေသြးလွ်ဴ ဒါန္းလိုသူမ်ားသည္ "donation form" ခလုပ္ အားႏိွပ္ျပီး လိုအပ္ေသာအခ်က္အလက္မ်ား ျဖည့္ရန္လိုပါသည္၊(ထိုလိုအပ္ခ်က္မ်ားသည္ ေသြးလွဴ
+ ဒါ္န္းမည့္သူတစ္ေယာက္­ အတြက္ အမွန္တကယ္လိုအပ္ေသာအခ်က္အလက္မ်ားျဖစ္ပါသည္။)</p>
+
+
+<p>ယခု application သည္ ေသြးလွ်ဴ ဒါန္းရန္ လိုအပ္ခ်က္မ်ား ၊ အခ်ိန္(၄လ တစ္ႀကိမ္) စသည့္လိုအပ္ခ်က္မ်ားႏွင့္ ကိုက္ညီေသာ အလွဴ
+ ရွင္မ်ားကိုသာ အလိုေလွ်ာက္ ေရြးခ်ယ္ေမးျမန္းမည္ျဖစ္ပါသည္။</p>
+
+<p>ေသြးလိုအပ္သူမ်ားသည္ "request blood" ခလုပ္အားႏွိပ္ျပီး adminမ်ားအားေခၚဆိုႏိုင္ပါသည္။(ေခၚဆိုရာတြင္ လိုအပ္သည့္ ေသြးအမိ်ဴ းအစား ေနရာ စသည့္ျဖင့္ တို႔ကို အတိအက်ေျပာရန္လိုအပ္ပါသည္။)</p>
+	<p>ေသြးလွဴျခင္းႏွင့္ ပတ္သက္ေသာ ဗဟုသုတမ်ား၊ က်မ္းမာေရး ဗဟုသုတမ်ား ကို Blog ဟူေသာ ခလုတ္ကို ကလစ္ႏွိပ္၍ ဖတ္ရႈ ႏုိင္ပါသည္။ </p>
+	<p>သင္အင္တာနက္ ဖြင့္ထားေသာ အခ်ိန္တြင္ Blog News အသစ္မ်ား ေဒါင္းလုပ္ဆြဲခ်ထားမည္ ျဖစ္ၿပီး အင္တာနက္ ပိတ္ထားလွ်င္လည္း offline ဖတ္ရႈႏုိင္ပါမည္။</p>
+	</div>
+</div>
+<div data-role="footer" id="toolbar" data-position="fixed" data-fullscreen="true" style="text-align:center;">
+			<a href="#form" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Donation Form</a>
+			<a href="#requestbloodpage"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Request Blood</a>
+			<a href="#blog"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Blog</a>
+  </div>
+
+</div>
 <!------ Edit Page Start ------------------------------------->
 <div data-role="page" id="success" >
-  <div data-role="header" id="toolbar">
+    <div data-role="header" id="toolbar" style="min-height:48px;margin-top:-1px;">
   <a href="#home" data-role="button" class='ui-btn-left' id="setting" ></a>
 	<h1 >Blood Donor Now</h1>
+	<a href="#howitwork" data-role="button" class="ui-btn-right " >How It Works</a>
   </div>
 
   <div data-role="main" class="ui-content">
@@ -381,7 +417,6 @@ ref: medindia</p>
   </div>
 
 <div data-role="footer" id="toolbar" data-position="fixed" data-fullscreen="true" style="text-align:center;">
-	<a href="#home" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Home</a>
 			<a href="#form" id="donationformbutton" data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Donation Form</a>
 			<a href="#requestbloodpage"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Request Blood</a>
 			<a href="#blog"  data-role="button" style="background:#fff;color:#E51C23;font-family: 'Roboto', sans-serif; font-weight: 400;">Blog</a>
