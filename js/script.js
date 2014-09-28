@@ -31,12 +31,11 @@ function onload(){
 
 function onDeviceReady()
 {
-	//check internet
 			var networkState = navigator.connection.type;
 	 if (networkState == Connection.NONE) 
 		{
 	
-		$("#needblood1").html("<span>Internet Required</span>");
+		$("#needblood1").html('<h1 align="center" color="pink">Internet Required</h1>');
 		}else
 		{
 	var internet = 'yes';
@@ -109,7 +108,7 @@ function needblood()
 				var dataid = window.localStorage.getItem('NB_id'+data[i]['NB_id']);
 				if(dataid == null)
 				{
-					da +='<a href="" id="'+data[i]['NB_id']+'"  data-NB_id="'+data[i]['NB_id']+'" data-blood_type="'+data[i]['blood_name']+'" class="iwilldonate" data-role="button" >လႈမယ္။ ဒီဖုန္းကို ေခၚေပးပါ။</a>';
+					da +='<a href="" id="'+data[i]['NB_id']+'"  data-NB_id="'+data[i]['NB_id']+'" data-blood_type="'+data[i]['blood_id']+'" class="iwilldonate" data-role="button" >လႈမယ္။ ဒီဖုန္းကို ေခၚေပးပါ။</a>';
 				}
 				else if(dataid == '1')
 				{
@@ -316,6 +315,7 @@ $("#addbloodDonorForm").submit(function(){
 			return false;
 });
 $("#needblood1").on('click','.iwilldonate',function(){
+$("#progress").css("display","block");
 var yourbloodtype = window.localStorage.getItem('blood_type');
 var yourLastdonate = window.localStorage.getItem('last_donate');
 var yourbod = window.localStorage.getItem('bod');
@@ -348,7 +348,7 @@ var year = dateObj.getUTCFullYear();
 
 var today = year + "-" + month + "-" + day;
 
-var dayBetween = daydiff(parseDate(yourLastdonate), parseDate(today));
+
 
 
 var userid =window.localStorage.getItem('userid');
@@ -359,21 +359,30 @@ var NB_id = $(this).attr('id');
 
 if(userid != null)
 {
-
+var dayBetween = daydiff(parseDate(yourLastdonate), parseDate(today));
 if(getAge(yourbod)< 18)
 	{
-		alert("သင္၏ အသက္သည္ 18 ႏွစ္မျပည့္ေသးပါသျဖင့္ လွဴခြင့္မရွိေသးပါ");
+		$("#imformation").html("သင္၏ အသက္သည္ 18 ႏွစ္မျပည့္ေသးပါသျဖင့္ လွဴခြင့္မရွိေသးပါ");
 		window.localStorage.setItem('NB_id'+NB_id,'2');
+		$("#progress").css("display","none");
 	}
+else if(blood_type != yourbloodtype)
+{
+alert('blood_type' + blood_type +'your blood type'+yourbloodtype);
+$("#imformation").html("<p>သင္ႏွင့္ ေသြးအမ်ိဳးအစားျခင္း မတူညီပါသျဖင့္ လွဴ၍ မရႏုိင္ပါ။</p>");
+$("#progress").css("display","none");
+}
  else if(getAge(yourbod) > 55)
 	{
-		alert("သင္၏ အသက္သည္ 55 ႏွစ္ ေက်ာ္သြားၿပီ ျဖစ္ပါသျဖင့္ လွဴ၍ မရႏိုင္ေတာ့ပါ။");
+		$("#imformation").html("သင္၏ အသက္သည္ 55 ႏွစ္ ေက်ာ္သြားၿပီ ျဖစ္ပါသျဖင့္ လွဴ၍ မရႏိုင္ေတာ့ပါ။");
 		window.localStorage.setItem('NB_id'+NB_id,'2');
+		$("#progress").css("display","none");
 	}
 else if(dayBetween < 120)
 	{
-		alert("သင္ ေနာက္ဆံုးအႀကိမ္ေသြးလွဴထားတာ ေလးလ  မျပည့္ေသးပါသျဖင့္ လွဴ၍ မရႏုိင္ေသးပါ။");
+		$("#imformation").html("သင္ ေနာက္ဆံုးအႀကိမ္ေသြးလွဴထားတာ ေလးလ  မျပည့္ေသးပါသျဖင့္ လွဴ၍ မရႏုိင္ေသးပါ။");
 		window.localStorage.setItem('NB_id'+NB_id,'2');
+		$("#progress").css("display","none");
 	}
 else{
 	$.ajax({
@@ -386,14 +395,16 @@ else{
 		},
 		success : function(data)
 		{
-		alert("သင္လွဴႏုိင္သည့္ အေၾကာင္း တာဝန္ရွိသူထံ အေၾကာင္းၾကားၿပီး ျဖစ္ပါသည္။ ေက်းဇူးျပဳ၍ ဖုန္းေခၚလာသည္ကို ေစာင့္ဆုိင္းေပးပါရန္။");
+		$("#imformation").html("သင္လွဴႏုိင္သည့္ အေၾကာင္း တာဝန္ရွိသူထံ အေၾကာင္းၾကားၿပီး ျဖစ္ပါသည္။ ေက်းဇူးျပဳ၍ ဖုန္းေခၚလာသည္ကို ေစာင့္ဆုိင္းေပးပါရန္။");
 		window.localStorage.setItem('NB_id'+NB_id,'1');
+		$("#progress").css("display","none");
 		}
 	});
 }
 }else
 {
-alert("ေသြးလွဴရန္ ေသြးလွဴေဖါင္အား ျဖည့္သြင္းေပးရန္လိုအပ္ပါသည္။ေက်းဇူးျပဳ၍ ေအာက္ေျခရွိ Donation Form ဟူေသာ ခလုတ္ကို ႏွိပ္၍စာရင္းေပးသြင္းပါရန္။");
+$("#imformation").html("ေသြးလွဴရန္ ေသြးလွဴေဖါင္အား ျဖည့္သြင္းေပးရန္လိုအပ္ပါသည္။ေက်းဇူးျပဳ၍ ေအာက္ေျခရွိ Donation Form ဟူေသာ ခလုတ္ကို ႏွိပ္၍စာရင္းေပးသြင္းပါရန္။");
+$("#progress").css("display","none");
 }
 	return false;
 });
