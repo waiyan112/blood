@@ -39,7 +39,7 @@ setInterval(function() {
 		$("#bod").datepicker({changeMonth:true,changeYear:true,dateFormat:'yy-mm-dd',defaultDate:-8000});
 		$("#last_donate").datepicker({changeMonth:true,changeYear:true,dateFormat:'yy-mm-dd'});
 		$('#addbloodDonorForm').attr('action',base_url+'blood/addMobile');
-		onload();
+	
 		//for blood type
 		$.getJSON('js/data/blood.json',function(data)
 			{
