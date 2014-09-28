@@ -1,15 +1,36 @@
-$(function() {
-<<<<<<< HEAD
-alert("on event");
-	document.addEventListener("deviceready", onDeviceReady, true);
-=======
-	document.addEventListener("deviceready", onDeviceReady, false);
->>>>>>> ace66acd97ff82f3f67d23695a66d1fd698935dd
+	$("#home").on('pageinit',function(){
+		$("#bod").datepicker({changeMonth:true,changeYear:true,dateFormat:'yy-mm-dd',defaultDate:-8000});
+		$("#last_donate").datepicker({changeMonth:true,changeYear:true,dateFormat:'yy-mm-dd'});
+		$('#addbloodDonorForm').attr('action',base_url+'blood/addMobile');
+	
+		//for blood type
+		$.getJSON('js/data/blood.json',function(data)
+			{
+				var d = '';
+				for(var i = 0;i< data.length;i++){
+				d +="<option value="+data[i]['blood_id']+">"+data[i]['blood_name']+"</option>";
+				}
+				$("#bloodgroup").html(d);
+			});
+		//for township
+		$.getJSON('js/data/township.json',function(data)
+			{
+				var d = '';
+				for(var i = 0;i< data.length;i++){
+				d +="<option value="+data[i]['township_id']+">"+data[i]['township_name']+"</option>";
+				}
+				$("#township").html(d);
+			});
+			onload();
 });
+function onload(){
+
+	document.addEventListener("deviceready", onDeviceReady, true);
+
+}
 
 function onDeviceReady()
 {
-alert("on ready");
 	//check internet
 			var networkState = navigator.connection.type;
 	 if (networkState == Connection.NONE) 
@@ -37,30 +58,7 @@ setInterval(function() {
 }, 5000);
 }
 
-	$("#home").on('pageinit',function(){
-		$("#bod").datepicker({changeMonth:true,changeYear:true,dateFormat:'yy-mm-dd',defaultDate:-8000});
-		$("#last_donate").datepicker({changeMonth:true,changeYear:true,dateFormat:'yy-mm-dd'});
-		$('#addbloodDonorForm').attr('action',base_url+'blood/addMobile');
-	
-		//for blood type
-		$.getJSON('js/data/blood.json',function(data)
-			{
-				var d = '';
-				for(var i = 0;i< data.length;i++){
-				d +="<option value="+data[i]['blood_id']+">"+data[i]['blood_name']+"</option>";
-				}
-				$("#bloodgroup").html(d);
-			});
-		//for township
-		$.getJSON('js/data/township.json',function(data)
-			{
-				var d = '';
-				for(var i = 0;i< data.length;i++){
-				d +="<option value="+data[i]['township_id']+">"+data[i]['township_name']+"</option>";
-				}
-				$("#township").html(d);
-			});
-});
+
 	
 	// open database
 	db = window.openDatabase("wsfewdfsefwe", "1.0", "Blood Donation Application", 1000000);	
