@@ -8,7 +8,7 @@ function onDeviceReady()
 			var networkState = navigator.connection.type;
 	 if (networkState == Connection.NONE) 
 		{
-		alert('no internet');
+	
 		$("#needblood1").html("<span>Internet Required</span>");
 		}else
 		{
@@ -23,7 +23,7 @@ setInterval(function() {
 			var networkState = navigator.connection.type;
 	 if (networkState == Connection.NONE) 
 		{
-		alert('intenet no');
+		
 		}else
 		{
 		needblood();
@@ -299,7 +299,7 @@ $("#addbloodDonorForm").submit(function(){
 						tx.executeSql('INSERT INTO donator (id, name,nrc,sex,bod,blood_type,township,facebook_link,phoneNumber,last_donate,wantTravelCharge,avalible_time) VALUES ( ?,?,?,?,?,?,?,?,?,?,?,?)',[id,name,nrc,sex,bod,blood_type,township,facebook_link,phoneNumber,last_donate,wantTravelCharge,avalible_time]);
 						}else
 						{
-						alert(" ia ma update function"+id);
+						
 							tx.executeSql("UPDATE donator SET name=?,nrc=?,sex=?,bod=?,blood_type=?,township=?,facebook_link=?,phoneNumber=?,last_donate=?,wantTravelCharge=?,avalible_time=? WHERE id=?",[name,nrc,sex,bod,blood_type,township,facebook_link,phoneNumber,last_donate,wantTravelCharge,avalible_time,id]);
 						}
 					});
