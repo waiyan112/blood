@@ -1,10 +1,8 @@
 $(function() {
-<<<<<<< HEAD
+
 alert("on event");
 	document.addEventListener("deviceready", onDeviceReady, true);
-=======
-	document.addEventListener("deviceready", onDeviceReady, false);
->>>>>>> ace66acd97ff82f3f67d23695a66d1fd698935dd
+
 });
 
 function onDeviceReady()
